@@ -1,0 +1,46 @@
+User
+=====
+id
+name
+email
+password
+image
+role - enum([1, 2]) 1 being normal user or a reader and 2 being admin
+
+Tag
+===
+id
+user_id (foreign key User(id))
+name
+
+Author
+======
+id
+user_id (foreign key User(id))
+name
+description
+
+Book
+=====
+id
+user_id (foreign key User(id))
+author_id (foreign key Author(id))
+name
+description
+image
+file - string - the file path of .pdf file of the Books
+download_count - how many times the file has been downloaded
+
+Book_Tag - many to many for tagging the books
+=========
+id
+book_id (foreign key Book(id))
+tag_id (foreign key Tag(id))
+
+Book_User - many to many for keeping favourite books
+=========
+id
+book_id (foreign key Book(id))
+user_id (foreign key User(id))
+
+
