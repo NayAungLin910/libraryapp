@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .button-sky-rounded {
+        @apply bg-sky-500 border-4 border-sky-500 text-white duration-500 py-2 px-3
+        focus:outline-none focus:ring focus:ring-sky-300 rounded-full shadow-md
+      hover:text-sky-500 hover:border-sky-500 hover:bg-transparent active:bg-transparent active:text-sky-500;
+    }
+}

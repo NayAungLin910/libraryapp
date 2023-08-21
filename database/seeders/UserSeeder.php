@@ -18,18 +18,19 @@ class UserSeeder extends Seeder
     {
         // create an admin account
         $admin = User::factory()
-            ->has(Tag::factory()->count(4))
-            ->has(Author::factory()->count(4))
+            ->has(Tag::factory()->count(4)) // create 4 tags
+            ->has(Author::factory()->count(4)) // create 4 authors
             ->create([
                 'name' => 'Admin',
                 'email' => 'admin@example.com',
-                'role' => 2
+                'role' => 2 // make the user admin
             ]);
 
         $tag_ids = Tag::get()->pluck('id');
 
         $authors = Author::get();
 
+        // for 1 author create 2 books
         $authors->each(function ($author) use ($admin) {
             Book::factory()
                 ->count(2)
@@ -38,7 +39,7 @@ class UserSeeder extends Seeder
 
         $books = Book::get();
 
-
+        // attach 2 tags for 1 book
         $books->each(function ($book) use ($tag_ids) {
             $book->tags()->attach($tag_ids->random(2));
         });
@@ -50,6 +51,7 @@ class UserSeeder extends Seeder
 
         $book_ids = Book::get()->pluck('id');
 
+        // for each reader attach at 2 favourite books.
         $readers->each(function ($reader) use($book_ids) {
             $reader->favBooks()->attach($book_ids->random(2));
         });
