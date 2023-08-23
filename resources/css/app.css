@@ -2,11 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
-    .button-sky-rounded {
-        @apply bg-sky-500 border-4 border-sky-500 text-white duration-500 py-2 px-3
-        focus:outline-none focus:ring focus:ring-sky-300 rounded-full shadow-md
-      hover:text-sky-500 hover:border-sky-500 hover:bg-transparent active:bg-transparent active:text-sky-500;
+    .button-violet-rounded {
+        @apply bg-violet-800 border-4 border-violet-800 text-white duration-500 py-2 px-3
+        focus:outline-none focus:ring focus:ring-slate-700 rounded-full shadow-md
+      hover:text-black hover:border-black hover:bg-transparent active:bg-transparent active:text-black;
+    }
+
+    .input-form-violet {
+        @apply my-2 py-2 px-4 rounded-lg block w-full h-8 text-black focus:outline-none border 
+      focus:ring focus:ring-violet-700 border-violet-700;
+    }
+
+    .input-file-violet {
+        @apply bg-white block my-2 rounded-lg text-black w-full focus:outline-none file:bg-violet-700 
+      file:border-none file:shadow-lg file:text-white file:mr-2 
+      file:h-8 border border-violet-700 focus:ring focus:ring-violet-700;
+    }
+
+    .input-checkbox {
+        @apply w-5 my-2 px-2 h-5 block;
     }
 }
