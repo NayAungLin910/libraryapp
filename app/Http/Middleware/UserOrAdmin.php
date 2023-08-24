@@ -17,7 +17,7 @@ class UserOrAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('auth.login');
+            return redirect()->route('auth.login')->with('error', 'Please login first!');;
         }
         return $next($request);
     }

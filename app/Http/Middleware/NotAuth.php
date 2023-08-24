@@ -17,7 +17,7 @@ class NotAuth
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            return redirect()->route('home');
+            return redirect()->route('home')->with('info', 'You are already logged in!');
         }
 
         return $next($request);

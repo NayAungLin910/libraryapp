@@ -9,15 +9,18 @@
     <link rel="icon" href="{{ asset('/default_images/logo_transparent.png') }}" />
 
     <title>@yield('meta-title', 'Statistics - Library App Dashboard')</title>
-    <meta name="description" content="@yield('meta-description', 'Library is an online library app where users can find books and download them.')" />
-    <link rel="canonical" href='@yield('meta-canonical', url()->current())' />
+    <meta name="description"
+        content="@yield('meta-description', 'Library is an online library app where users can find books and download them.')" />
+    <link rel="canonical" href='@yield(' meta-canonical', url()->current())' />
     <meta name="robots" content="@yield('meta-robots', 'index, follow')">
 
     <!-- Open Graph meta tags -->
     <meta property="og:type" content="@yield('meta-og-type', 'website')" />
     <meta property="og:title" content="@yield('meta-og-title', 'Library')" />
-    <meta property="og:description" content="@yield('meta-og-description', 'Come and find the books you love in Library and also find other books written by your favourite authors.')" />
-    <meta property="og:image" content="@yield('meta-og-image', asset('/default_images/beauty_shop_white_banner.png'))" />
+    <meta property="og:description"
+        content="@yield('meta-og-description', 'Come and find the books you love in Library and also find other books written by your favourite authors.')" />
+    <meta property="og:image"
+        content="@yield('meta-og-image', asset('/default_images/beauty_shop_white_banner.png'))" />
     <meta property="og:url" content="@yield('meta-og-url', url()->current())" />
     <meta property="og:site_name" content="@yield('meta-og-sitename', 'Library')" />
 
@@ -28,6 +31,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <!-- toastify css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- Custom Styles -->
     @yield('layout-style')
@@ -49,7 +55,8 @@
             <div class="p-2.5 mt-1 flex items-center">
                 <ion-icon name="bar-chart-outline" class="px-2 py-1 bg-pink-900 rounded"></ion-icon>
                 <h1 class="font-bold text-[15px] ml-3">Tailwindbar</h1>
-                <ion-icon name="close-circle-outline" onclick="toggleSideBar()" class="ml-20 text-2xl cursor-pointer lg:hidden bg-pink-900 rounded-full"></ion-icon>
+                <ion-icon name="close-circle-outline" onclick="toggleSideBar()"
+                    class="ml-20 text-2xl cursor-pointer lg:hidden bg-pink-900 rounded-full"></ion-icon>
             </div>
             <hr class="my-2 text-gray-600">
         </div>
@@ -99,15 +106,17 @@
             <span class="text-[15px] ml-4">Logout</span>
         </div>
     </div>
-    
+
     <div class="lg:ml-[300px] mt-11 lg:mt-0">
         {{ $slot }}
     </div>
-    
 
     <!-- Ionic Icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- toastify js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- Custom Scripts -->
     @yield('layout-script')

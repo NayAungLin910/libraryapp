@@ -1,8 +1,3 @@
-@push('layout-style-stack')
-    <!-- toastify css -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-@endpush
-
 <!-- Toastify Session Partial -->
 @if (session()->has('error'))
     <script>
@@ -16,7 +11,7 @@
             position: "right", // `left`, `center` or `right`
             stopOnFocus: true, // Prevents dismissing of toast on hover
             style: {
-                background: "linear-gradient(to right, #F12F26, #F06D67)",
+                background: "linear-gradient(to right, #F12F26, #900C3F)",
             },
             onClick: function() {} // Callback after click
         }).showToast();
@@ -34,7 +29,7 @@
             position: "right", // `left`, `center` or `right`
             stopOnFocus: true, // Prevents dismissing of toast on hover
             style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                background: "linear-gradient(to right, #029C25, #03751D)",
             },
             onClick: function() {} // Callback after click
         }).showToast();
@@ -52,14 +47,9 @@
             position: "right", // `left`, `center` or `right`
             stopOnFocus: true, // Prevents dismissing of toast on hover
             style: {
-                background: "linear-gradient(to right, #0978EE, #6EADEF)",
+                background: "linear-gradient(to right, #0978EE, #083B9C)",
             },
             onClick: function() {} // Callback after click
         }).showToast();
     </script>
 @endif
-
-@push('layout-script-stack')
-    <!-- toastify js -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-@endpush

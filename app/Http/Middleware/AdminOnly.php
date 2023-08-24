@@ -17,7 +17,7 @@ class AdminOnly
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check() || Auth::user()->role !== '2') {
-            return redirect()->route('auth.login');
+            return redirect()->route('auth.login')->with('error', 'Unauthorized route!');;
         }
         return $next($request);
     }
