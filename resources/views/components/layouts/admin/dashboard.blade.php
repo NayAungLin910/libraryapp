@@ -41,49 +41,32 @@
     @stack('layout-style-stack')
 </head>
 
-<body class="font-lato bg-gradient-to-t from-[#e0bad5] to-[#f1b5d8] h-screen">
+<body class="font-lato bg-purple-400">
 
     <!-- Sidebar button for mobile view -->
     <span class="absolute text-4xl top-2 left-3 cursor-pointer" onclick="toggleSideBar()">
-        <ion-icon name="menu-outline" class="bg-pink-900 text-white rounded-md"></ion-icon>
+        <ion-icon name="menu-outline" class="bg-purple-900 text-white rounded-md"></ion-icon>
     </span>
 
     <!-- Sidebar -->
     <div
-        class="sidebar text-white bg-pink-700 shadow fixed top-0 bottom-0 lg:left-0 left-[-300px] p-2 w-[300px] overflow-y-auto text-center">
-        <div class="text-xl">
-            <div class="p-2.5 mt-1 flex items-center">
-                <ion-icon name="bar-chart-outline" class="px-2 py-1 bg-pink-900 rounded"></ion-icon>
-                <h1 class="font-bold text-[15px] ml-3">Tailwindbar</h1>
-                <ion-icon name="close-circle-outline" onclick="toggleSideBar()"
-                    class="ml-20 text-2xl cursor-pointer lg:hidden bg-pink-900 rounded-full"></ion-icon>
-            </div>
-            <hr class="my-2 text-gray-600">
+        class="sidebar text-white bg-purple-700 shadow fixed top-0 bottom-0 lg:left-0 left-[-300px] p-2 w-[300px] overflow-y-auto text-center">
+
+        <!-- side bar toggle for mobile view --->
+        <div class="flex items-center place-content-end lg:hidden">
+            <ion-icon name="close-circle-outline" onclick="toggleSideBar()"
+                class=" text-3xl cursor-pointer lg:hidden bg-purple-900 rounded-full float-right"></ion-icon>
         </div>
 
-        <!--Search -->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-pink-800">
-            <ion-icon name="search-outline" class="text-xl"></ion-icon>
-            <input type="text" class="focus:outline-none text-[15px] ml-4 w-full bg-transparent" placeholder="Search">
+        <!-- Tags -->
+        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-800">
+            <ion-icon name="pricetag-outline" class="text-xl"></ion-icon>
+            <span class="text-[15px] ml-4">Tags</span>
         </div>
-
-        <!-- Home -->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-pink-800">
-            <ion-icon name="home-outline" class="text-xl"></ion-icon>
-            <span class="text-[15px] ml-4">Home</span>
-        </div>
-
-        <!-- Bookmark -->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-pink-800">
-            <ion-icon name="bookmark-outline" class="text-xl"></ion-icon>
-            <span class="text-[15px] ml-4">Bookmark</span>
-        </div>
-
-        <hr class="my-4 text-gray-600">
 
         <!-- Chatbox -->
         <div onclick="dropDown()"
-            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-pink-800">
+            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-800">
             <ion-icon name="chatbubble-outline" class=" text-xl"></ion-icon>
             <div class="flex justify-between w-full items-center">
                 <span class="text-[15px] ml-4">Chatbox</span>
@@ -95,13 +78,15 @@
 
         <!-- Chatbox submenu -->
         <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto " id="submenu">
-            <h1 class="cursor-pointer p-2 hover:bg-pink-800 rounded-md mt-1">Social</h1>
-            <h1 class="cursor-pointer p-2 hover:bg-pink-800 rounded-md mt-1">Personal</h1>
-            <h1 class="cursor-pointer p-2 hover:bg-pink-800 rounded-md mt-1">Friends</h1>
+            <h1 class="cursor-pointer p-2 hover:bg-purple-800 rounded-md mt-1">Social</h1>
+            <h1 class="cursor-pointer p-2 hover:bg-purple-800 rounded-md mt-1">Personal</h1>
+            <h1 class="cursor-pointer p-2 hover:bg-purple-800 rounded-md mt-1">Friends</h1>
         </div>
 
+        <hr class="my-4 text-gray-600">
+
         <!-- Logout-->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-pink-800">
+        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-800">
             <ion-icon name="log-out-outline" class="text-xl"></ion-icon>
             <span class="text-[15px] ml-4">Logout</span>
         </div>
@@ -129,7 +114,7 @@
         // handles submenu dropdown
         function dropDown(){
             document.querySelector('#submenu').classList.toggle('hidden')
-            document.querySelector('#arrow').classList.toggle('rotate-0')
+            document.querySelector('#arrow').classList.toggle('rotate-180')
         }
 
         // toggle the sidebar for mobile view

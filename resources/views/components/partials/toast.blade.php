@@ -53,3 +53,22 @@
         }).showToast();
     </script>
 @endif
+<script>
+     // listenes for toast message browser dispatch event from livewire
+     window.addEventListener('success', event => {
+        Toastify({
+                text: event.detail.message,
+                duration: 3000,
+                destination: "",
+                newWindow: true,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #029C25, #03751D)",
+                },
+                onClick: function() {} // Callback after click
+            }).showToast();
+    })
+</script>
