@@ -4,7 +4,11 @@ use App\Livewire\Admin\Statistics;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Profile;
 use App\Livewire\Auth\Register;
+use App\Livewire\Author\CreateAuthor;
+use App\Livewire\Author\EditAuthor;
+use App\Livewire\Author\ViewAuthor;
 use App\Livewire\Home;
+use App\Livewire\Tag\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +49,14 @@ Route::prefix('user')->as('user.')->middleware(['userOrAdmin'])->group(function 
 // admin only routes
 Route::prefix('admin/dashboard')->middleware(['adminOnly'])->as('admin.')->group(function () {
     Route::get('/', Statistics::class)->name('statistics');
+
+    // tags
+    Route::get('/tags', Tag::class)->name('tags');
+
+    // authors
+    Route::prefix('authors')->as('authors.')->group(function () {
+        Route::get('/create', CreateAuthor::class)->name('create'); // create author
+        Route::get('/', ViewAuthor::class)->name('view'); // view authors
+        Route::get('/edit/{id}', EditAuthor::class)->name('edit'); // edit author
+    });
 });

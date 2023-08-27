@@ -32,13 +32,13 @@ class Register extends Component
     {
         $this->validate();
 
-        $path = $this->image->store('images'); // store the image in default disk under images directory
+        $path = '/' . $this->image->store('images'); // store the image in default disk under images directory
 
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
-            'image' => '/' . $path,
+            'image' =>  $path,
         ]);
 
         Auth::login($user, $this->remember);

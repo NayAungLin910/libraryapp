@@ -71,9 +71,8 @@
 
                                 @if (Auth::user()->role === '2')
                                 <li class="rounded-lg cursor-pointer px-4 py-2 hover:bg-gray-100">
-                                    <a class="text-black hover:no-underline" href="">
-                                        <div class="flex items-center gap-2">
-                                            <i class="fa-solid fa-gauge"></i>
+                                    <a class="text-black hover:no-underline" href="{{ route('admin.statistics') }}">
+                                        <div class="flex items-center">
                                             Dashboard
                                         </div>
                                     </a>
@@ -104,7 +103,7 @@
                     <!-- Not logied yet -->
                     <li class="group/unauth pr-6">
                         <button class="cursor-pointer">
-                            <img id="unauth-image" src="/storage/images/example_user_profile.png"
+                            <img id="unauth-image" src="{{ asset('storage/default_images/example_user_profile.png') }}"
                                 class="w-12 max-h-12 border rounded-full shadow" loading="lazy"
                                 alt="unauthenticated user's profile image" />
                         </button>
@@ -193,8 +192,8 @@
             navLinks.classList.toggle('top-[3.8rem]')
         }
 
-         // update the profiles
-         window.addEventListener('new-profile', event => {
+        // update the profiles
+        window.addEventListener('new-profile', event => {
             const profiles = document.querySelectorAll("#profile-image")
             // loop over all the profile images
             for(i = 0; i < profiles.length; ++i) {

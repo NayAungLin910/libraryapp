@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('author_id')->constrained();
+            $table->foreignId('user_id');
+            $table->foreignId('author_id');
             $table->string('name');
             $table->mediumText('description');
             $table->string('image');
