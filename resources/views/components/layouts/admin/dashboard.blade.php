@@ -152,6 +152,15 @@
 
         <hr class="my-4 text-gray-600">
 
+        <!-- Accounts -->
+        <a href="{{ route('admin.accounts') }}">
+            <div
+                class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-800 {{ request()->routeIs('admin.accounts') ? 'bg-purple-800' : '' }}">
+                <ion-icon name="receipt-outline"></ion-icon>
+                <span class="text-[15px] ml-4">Accounts</span>
+            </div>
+        </a>
+
     </div>
 
     <div class="lg:ml-[300px] mt-11 lg:mt-0 pb-4">

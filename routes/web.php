@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Account\Account;
 use App\Livewire\Admin\Statistics;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Profile;
@@ -69,4 +70,6 @@ Route::prefix('admin/dashboard')->middleware(['adminOnly'])->as('admin.')->group
         Route::get('/', ViewBook::class)->name('view'); // view books
         Route::get('/edit/{id}', EditBook::class)->name('edit'); // edit book
     });
+
+    Route::get('/accounts', Account::class)->name('accounts');
 });

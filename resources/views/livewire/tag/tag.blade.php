@@ -58,7 +58,7 @@
                     <th class="table-th">Name</th>
                     <th class="table-th">Books Count</th>
                     <th class="table-th">Created At</th>
-                    <th class="table-th">Some Actions</th>
+                    <th class="table-th"></th>
                 </tr>
             </thead>
             <tbody class="border-b border-violet-100">

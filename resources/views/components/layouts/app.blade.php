@@ -104,7 +104,7 @@
                     <!-- Not logied yet -->
                     <li class="group/unauth pr-6">
                         <button class="cursor-pointer">
-                            <img id="unauth-image" src="{{ asset('storage/default_images/example_user_profile.png') }}"
+                            <img id="unauth-image" src="{{ asset('storage/default_images/unlogin.png') }}"
                                 class="w-12 max-h-12 border rounded-full shadow" loading="lazy"
                                 alt="unauthenticated user's profile image" />
                         </button>

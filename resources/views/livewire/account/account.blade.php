@@ -1,6 +1,6 @@
 <div>
     <!-- label -->
-    <h1 class="text-center text-2xl my-2">View Authors</h1>
+    <h1 class="text-center text-2xl my-2">View Accounts</h1>
 
     <!-- Filter table --->
     <div class="p-2 flex flex-wrap gap-2">
@@ -11,12 +11,22 @@
                 class="input-form-violet">
         </div>
 
-        <!-- Sort By -->
+        <!-- Sort By Time -->
         <div>
-            <label for="search">Sort</label>
-            <select class="input-form-violet bg-white p-1" name="sort" wire:model.live.debounce.200ms='sort' id="">
+            <label for="sort">Sort</label>
+            <select class="input-form-violet bg-white p-1" name="sort" wire:model.live.debounce.200ms='sort' id="sort">
                 <option value="latest">Latest</option>
                 <option value="oldest">Oldest</option>
+            </select>
+        </div>
+
+        <!-- Sort By Type -->
+        <div>
+            <label for="type">Sort By Type</label>
+            <select class="input-form-violet bg-white p-1" name="sort" wire:model.live.debounce.200ms='type' id="type">
+                <option value="all">All</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
             </select>
         </div>
 
@@ -27,48 +37,58 @@
         </div>
     </div>
 
-    <!-- Authors Table -->
+    <!-- Users Table -->
     <div wire:loading.delay.short.remove class="overflow-auto rounded-lg shadow-md m-2 my-3">
         <table class="w-full border-collapse border bg-violet-100 border-violet-100">
             <thead class="border-b text-lg border-violet-100">
                 <tr>
                     <th class="table-th"></th>
                     <th class="table-th">Name</th>
-                    <th class="table-th">Books Count</th>
                     <th class="table-th">Created At</th>
+                    <th class="table-th">Role</th>
                     <th class="table-th"></th>
                 </tr>
             </thead>
             <tbody class="border-b border-violet-100">
-                @if ($authors->count())
-                @foreach ($authors as $author)
+                @if ($users->count())
+                @foreach ($users as $user)
                 <tr class="border-b hover:bg-violet-200 border-violet-100" x-on:success.window="edit = false">
                     <td class="table-td">
-                        <img id="profile-image" src="{{ asset('storage' . $author->image) }}"
+                        <img id="profile-image" src="{{ asset('storage' . $user->image) }}"
                             class="max-w-[3rem] border rounded-full shadow" loading="lazy"
-                            alt="{{ $author->name }}'s profile image" />
+                            alt="{{ $user->name }}'s profile image" />
                     </td>
                     <td class="table-td">
-                        {{ $author->name }}
+                        {{ $user->name }}
                     </td>
                     <td class="table-td">
-                        {{ $author->books_count }}
+                        {{ $user->created_at }}
                     </td>
                     <td class="table-td">
-                        {{ $author->created_at }}
+                        @if ($user->role === '2')
+                        <span class="p-2 rounded-lg bg-violet-600 text-white">
+                            Admin
+                        </span>
+                        @else
+                        <span class="p-2 rounded-lg bg-slate-200 text-black">
+                            Normal
+                        </span>
+                        @endif
                     </td>
                     <td class="table-td">
                         <div class="flex items-center place-content-around gap-2 ">
 
-                            <!-- Edit -->
-                            <a href="{{ route('admin.authors.edit', ['id' => $author->id]) }}"
-                                class="button-white-rounded">Edit</a>
-
+                            @if ($user->role === '1')
+                            <!-- Change Admin -->
+                            <button onclick='openPopupSubmit("Are you sure about changing the user, {{ $user->name }} to an admin?", "", false, "user-change", {{ $user->id }})' type="button" class="button-white-rounded">
+                                Change to Admin
+                            </button>
                             <!-- Delete --->
                             <button class="button-violet-rounded"
-                                onclick='openPopupSubmit("Are you sure about deleteing the author, {{ $author->name }}?", "", true, "author-delete", {{ $author->id }})'>
+                                onclick='openPopupSubmit("Are you sure about deleteing the user, {{ $user->name }}?", "", true, "user-delete", {{ $user->id }})'>
                                 Delete
                             </button>
+                            @endif
 
                         </div>
                     </td>
@@ -76,7 +96,7 @@
                 @endforeach
                 @else
                 <tr class="border-b hover:bg-violet-200 border-violet-100">
-                    <td class="table-td text-center" colspan="5">No authors found!</td>
+                    <td class="table-td text-center" colspan="5">No users found!</td>
                 </tr>
                 @endif
 
@@ -87,13 +107,13 @@
     <!-- loading indicator -->
     <div class="my-2 flex place-content-center">
         <img wire:loading.delay.short class="max-w-[10rem]"
-            src="{{ asset('storage/default_images/clouds-spinner.gif') }}" alt="">
+            src="{{ asset('storage/default_images/clouds-spinner.gif') }}" alt="loading indicator image">
     </div>
 
     <!-- pagination button -->
-    @if ($authors->count())
+    @if ($users->count())
     <div wire:loading.delay.short.remove class="px-2 my-2">
-        {{ $authors->links() }}
+        {{ $users->links() }}
     </div>
     @endif
 </div>
