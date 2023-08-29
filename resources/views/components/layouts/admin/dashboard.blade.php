@@ -117,16 +117,44 @@
 
         </div>
 
+        <!-- Book -->
+        <div onclick="dropDown('book')"
+            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-800">
+            <ion-icon name="book-outline" class=" text-xl"></ion-icon>
+            <div class="flex justify-between w-full items-center">
+                <span class="text-[15px] ml-4">Book</span>
+                <span class="text-sm duration-300 {{ !request()->is('admin/dashboard/books*') ? '' : 'rotate-180' }}"
+                    id="book-arrow">
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </span>
+            </div>
+        </div>
+
+        <!-- Book submenu -->
+        <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto {{ !request()->is('admin/dashboard/books*') ? 'hidden' : '' }}"
+            id="book-submenu">
+
+            <!-- Create Book -->
+            <a href="{{ route('admin.books.create') }}">
+                <h1
+                    class="cursor-pointer p-2 hover:bg-purple-800 rounded-md mt-1 {{ request()->routeIs('admin.books.create') ? 'bg-purple-800' : '' }}">
+                    Create</h1>
+            </a>
+
+            <!-- View Book -->
+            <a href="{{ route('admin.books.view') }}">
+                <h1
+                    class="cursor-pointer p-2 hover:bg-purple-800 rounded-md mt-1 {{ request()->routeIs('admin.books.view') ? 'bg-purple-800' : '' }}">
+                    View</h1>
+            </a>
+
+        </div>
+
         <hr class="my-4 text-gray-600">
 
-        <!-- Logout-->
-        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-800">
-            <ion-icon name="log-out-outline" class="text-xl"></ion-icon>
-            <span class="text-[15px] ml-4">Logout</span>
-        </div>
     </div>
 
-    <div class="lg:ml-[300px] mt-11 lg:mt-0">
+    <div class="lg:ml-[300px] mt-11 lg:mt-0 pb-4">
         {{ $slot }}
     </div>
 

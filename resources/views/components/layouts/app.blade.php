@@ -70,27 +70,28 @@
                             <ul class="ul-clear">
 
                                 @if (Auth::user()->role === '2')
-                                <li class="rounded-lg cursor-pointer px-4 py-2 hover:bg-gray-100">
-                                    <a class="text-black hover:no-underline" href="{{ route('admin.statistics') }}">
+                                <a class="text-black hover:no-underline" href="{{ route('admin.statistics') }}">
+                                    <li class="rounded-lg cursor-pointer px-4 py-2 hover:bg-gray-100">
                                         <div class="flex items-center">
                                             Dashboard
                                         </div>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                                 @endif
 
-                                <li class="rounded-lg cursor-pointer px-4 py-2 hover:bg-gray-100">
-                                    <a class="text-black hover:no-underline" href="{{ route('user.profile') }}">
+                                <!-- Profile -->
+                                <a class="text-black hover:no-underline" href="{{ route('user.profile') }}">
+                                    <li class="rounded-lg cursor-pointer px-4 py-2 hover:bg-gray-100">
                                         Profile
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
 
                                 <li class="rounded-lg p-2 hover:bg-gray-100">
                                     <form id="logout-accept-form" action="{{ route('user.logout') }}" method="POST">
                                         @csrf
                                         <button type="button"
                                             onclick='openPopupSubmit("Are you sure about logging out form your account?", "logout", true)'
-                                            class="flex items-center gap-2">
+                                            class="flex items-center gap-2 w-full">
                                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                             Logout
                                         </button>

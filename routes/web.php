@@ -7,6 +7,9 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Author\CreateAuthor;
 use App\Livewire\Author\EditAuthor;
 use App\Livewire\Author\ViewAuthor;
+use App\Livewire\Book\CreateBook;
+use App\Livewire\Book\EditBook;
+use App\Livewire\Book\ViewBook;
 use App\Livewire\Home;
 use App\Livewire\Tag\Tag;
 use Illuminate\Http\Request;
@@ -58,5 +61,12 @@ Route::prefix('admin/dashboard')->middleware(['adminOnly'])->as('admin.')->group
         Route::get('/create', CreateAuthor::class)->name('create'); // create author
         Route::get('/', ViewAuthor::class)->name('view'); // view authors
         Route::get('/edit/{id}', EditAuthor::class)->name('edit'); // edit author
+    });
+
+    // books
+    Route::prefix('books')->as('books.')->group(function () {
+        Route::get('/create', CreateBook::class)->name('create'); // create book
+        Route::get('/', ViewBook::class)->name('view'); // view books
+        Route::get('/edit/{id}', EditBook::class)->name('edit'); // edit book
     });
 });

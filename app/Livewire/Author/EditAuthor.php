@@ -53,8 +53,6 @@ class EditAuthor extends Component
             $this->reset('image');
 
             $this->iteration++; // causes the image input to reset value
-
-            // $this->dispatch('new-profile', src: $path);
         }
 
         $this->author->name = $this->name;
