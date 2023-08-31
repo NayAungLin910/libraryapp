@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Auth;
 
 class Book extends Model
 {
@@ -19,6 +20,10 @@ class Book extends Model
         'image',
         'file',
         'download_count',
+    ];
+
+    protected $appends = [
+        'is_fav',
     ];
 
     /**
@@ -51,5 +56,16 @@ class Book extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Get whether the book is one of the favourite books or not
+     */
+    public function getIsFavAttribute()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        $favBooks = $user->favBooks()->get()->pluck('id');
+
+        return $favBooks->contains($this->id);
     }
 }

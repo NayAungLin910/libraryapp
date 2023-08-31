@@ -12,23 +12,19 @@ use App\Livewire\Book\CreateBook;
 use App\Livewire\Book\EditBook;
 use App\Livewire\Book\ViewBook;
 use App\Livewire\Home;
+use App\Livewire\Public\Book\SingleBook;
+use App\Livewire\Public\Book\ViewBook as BookViewBook;
 use App\Livewire\Tag\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', Home::class)->name('home');
+
+Route::prefix('books')->as('books.')->group(function () {
+    Route::get('/', BookViewBook::class)->name('view');
+    Route::get('/view/{id}', SingleBook::class)->name('single');
+});
 
 // routes only for unauthenticated users
 Route::prefix('auth')->middleware(['notAuth'])->as('auth.')->group(function () {

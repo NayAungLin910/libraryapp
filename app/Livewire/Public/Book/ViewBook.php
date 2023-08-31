@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Livewire\Public\Book;
+
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class ViewBook extends Component
+{
+    use WithPagination;
+
+    public $authors;
+
+    public $authorId = "default-author";
+
+    public $search = '';
+
+    public $sort = 'latest';
+
+    public function mount()
+    {
+        $this->authors = Author::orderBy('name')->select('id', 'name')->get();
+    }
+
+    public function favourite($id)
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if ($user->favBooks()->where('books.id', $id)->exists()) {
+            $user->favBooks()->detach($id);
+
+            $message = "A book has been removed from favourite list!";
+            
+        } else {
+            $user->favBooks()->attach($id);
+
+            $message = "A book has been added to favourite list!";
+        }
+
+        $this->dispatch('success', message: $message);
+    }
+
+    public function resetFilter()
+    {
+        $this->resetExcept('authors');
+
+        $this->resetPage();
+    }
+
+    public function download($id)
+    {
+        $book = Book::where('id', $id)->first();
+
+        if ($book) {
+            $book->download_count++;
+            $book->save();
+
+            return Storage::download($book->file);
+        }
+    }
+
+    #[Layout('components.layouts.app')]
+    public function render()
+    {
+        $books = Book::query();
+
+        if ($this->search) {
+            $books = $books->where('name', 'like', "%$this->search%");
+        }
+
+        if ($this->authorId !== 'default-author') {
+            $book = $books->where('author_id', $this->authorId);
+        }
+
+        $books = $this->sort === 'latest' ? $books->latest() : $books->oldest();
+
+        $books = $books->with("author:id,name")->paginate(10);
+
+        return view('livewire.public.book.view-book', compact('books'));
+    }
+}
