@@ -16,7 +16,7 @@ class SingleBook extends Component
 
     public function mount($id)
     {
-        $this->book = Book::where('id', $id)->with('author')->first();
+        $this->book = Book::where('id', $id)->with('author')->with('tags:id,name')->first();
     }
 
     public function favourite($id)

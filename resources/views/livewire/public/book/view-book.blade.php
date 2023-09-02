@@ -19,6 +19,18 @@
             </select>
         </div>
 
+        <!-- Sort By Tag -->
+        <div>
+            <label for="tag-sort">Sort By Tag</label>
+            <select wire:model.live.debounce.200ms='tagId' class="input-form-violet bg-white p-1" name="tagId"
+                id="tag-sort">
+                <option disabled value="default-tag">Choose Tag</option>
+                @foreach ($tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <!-- Sort By Author -->
         <div>
             <label for="author-sort">Sort By Author</label>
@@ -50,14 +62,30 @@
                     loading="lazy">
                 <div class="p-3">
                     <p class="text-lg my-1">{{ $book->name }}</p>
-                    <p class="tet-lg my-1 text-sm">Written By: {{ $book->author->name }}</p>
+                    <p class="tet-lg my-1 text-sm">
+                        Written By:
+                        <a
+                            href="{{ route('books.view-pre', ['authorId' => $book->author->id, 'tagId' => 'default-tag']) }}">
+                            <span class="bg-violet-200 hover:bg-violet-400 text-black p-1 rounded-lg">
+                                {{ $book->author->name }}
+                            </span>
+                        </a>
+                    </p>
                     <p class="truncate my-1 mb-2 text-sm">
                         {{ $book->description }}
                     </p>
                     <span class="rounded-lg p-2 w-auto bg-violet-200 text-black text-sm">
                         Total Downloads: {{ $book->download_count }}
                     </span>
-
+                    <div class="flex flex-wrap mt-3 gap-1">
+                        @foreach ($book->tags as $tag)
+                        <a href="{{ route('books.view-pre', ['tagId' => $tag->id, 'authorId' => 'default-author']) }}">
+                            <span class="bg-violet-200 hover:bg-violet-400 p-1 text-black text-sm rounded-lg">
+                                {{ $tag->name }}
+                            </span>
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="flex items-center p-2 place-content-between">
                     <button wire:click="download('{{ $book->id }}')"

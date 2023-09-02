@@ -4,7 +4,9 @@ namespace App\Livewire\Public\Book;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -19,13 +21,24 @@ class ViewBook extends Component
 
     public $authorId = "default-author";
 
+    public $tagId = "default-tag";
+
+    public $tags;
+
     public $search = '';
 
     public $sort = 'latest';
 
-    public function mount()
+    public function mount($tagId = "default-tag", $authorId = "default-author")
     {
+
         $this->authors = Author::orderBy('name')->select('id', 'name')->get();
+
+        $this->tags = Tag::orderBy('name')->select('id', 'name')->get();
+
+        $this->authorId = $authorId;
+
+        $this->tagId = $tagId;
     }
 
     public function favourite($id)
@@ -36,7 +49,6 @@ class ViewBook extends Component
             $user->favBooks()->detach($id);
 
             $message = "A book has been removed from favourite list!";
-            
         } else {
             $user->favBooks()->attach($id);
 
@@ -48,7 +60,7 @@ class ViewBook extends Component
 
     public function resetFilter()
     {
-        $this->resetExcept('authors');
+        $this->resetExcept(['authors', 'tags']);
 
         $this->resetPage();
     }
@@ -75,12 +87,18 @@ class ViewBook extends Component
         }
 
         if ($this->authorId !== 'default-author') {
-            $book = $books->where('author_id', $this->authorId);
+            $books = $books->where('author_id', $this->authorId);
+        }
+
+        if ($this->tagId !== 'default-tag') {
+            $books = $books->whereHas('tags', function (Builder $query) {
+                $query->where('tags.id', $this->tagId);
+            });
         }
 
         $books = $this->sort === 'latest' ? $books->latest() : $books->oldest();
 
-        $books = $books->with("author:id,name")->paginate(10);
+        $books = $books->with('tags:id,name')->with("author:id,name")->paginate(10);
 
         return view('livewire.public.book.view-book', compact('books'));
     }

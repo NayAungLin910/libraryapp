@@ -4,6 +4,8 @@ namespace App\Livewire\Book;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -18,6 +20,10 @@ class ViewBook extends Component
 
     public $authorId = "default-author";
 
+    public $tagId = "default-tag";
+
+    public $tags;
+
     public $search = '';
 
     public $sort = 'latest';
@@ -25,6 +31,8 @@ class ViewBook extends Component
     public function mount()
     {
         $this->authors = Author::orderBy('name')->select('id', 'name')->get();
+
+        $this->tags = Tag::orderBy('name')->select('id', 'name')->get();
     }
 
     #[On('book-delete')]
@@ -51,7 +59,7 @@ class ViewBook extends Component
 
     public function resetFilter()
     {
-        $this->resetExcept('authors');
+        $this->resetExcept(['authors', 'tags']);
 
         $this->resetPage();
     }
@@ -67,6 +75,12 @@ class ViewBook extends Component
 
         if ($this->authorId !== 'default-author') {
             $book = $books->where('author_id', $this->authorId);
+        }
+
+        if($this->tagId !== 'default-tag') {
+            $books = $books->whereHas('tags', function (Builder $query) {
+                $query->where('tags.id', $this->tagId);
+            });
         }
 
         $books = $this->sort === 'latest' ? $books->latest() : $books->oldest();

@@ -10,8 +10,22 @@
                 Total Downloads: {{ $book->download_count }}
             </span>
             <p class="mt-2">
-                Written By: {{ $book->author->name }}
+                Written By:
+                <a href="{{ route('books.view-pre', ['authorId' => $book->author->id, 'tagId' => 'default-tag']) }}">
+                    <span class="bg-violet-200 hover:bg-violet-400 text-black p-1 rounded-lg">
+                        {{ $book->author->name }}
+                    </span>
+                </a>
             </p>
+            <div class="flex flex-wrap mt-3 gap-1">
+                @foreach ($book->tags as $tag)
+                <a href="{{ route('books.view-pre', ['tagId' => $tag->id, 'authorId' => 'default-author']) }}">
+                    <span class="bg-violet-200 p-1 text-black rounded-lg hover:bg-violet-400">
+                        {{ $tag->name }}
+                    </span>
+                </a>
+                @endforeach
+            </div>
         </div>
         <div class="flex place-content-between items-center p-3" x-data="{ cart: false }">
             <a class="button-violet-rounded" href="{{ route('books.view') }}">

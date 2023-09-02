@@ -23,6 +23,8 @@ Route::get('/', Home::class)->name('home');
 
 Route::prefix('books')->as('books.')->group(function () {
     Route::get('/', BookViewBook::class)->name('view');
+    Route::get('/pre-values/{tagId?}/{authorId?}', BookViewBook::class)->name('view-pre');
+    Route::get('/author/again/{authorId?}' , BookViewBook::class)->name('view-author');
     Route::get('/view/{id}', SingleBook::class)->name('single');
 });
 

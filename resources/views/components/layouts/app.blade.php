@@ -57,10 +57,13 @@
                 class="nav-links bg-violet-500 md:static absolute ease-in-out transition-all duration-500 md:min-h-fit left-0 top-[-100%] w-full md:w-auto flex items-center px-5 py-2">
                 <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 text-lg">
 
+                    <!-- Search Box -->
+                    <livewire:search.search-box />
+
                     <!-- Search Book -->
                     <li>
                         <a href="{{ route('books.view') }}"
-                            class="hover:text-black {{ request()->routeIs('books.view') ? 'text-black' : ''}}">
+                            class="hover:text-black {{ request()->routeIs('books*') ? 'text-black' : ''}}">
                             Search Books
                         </a>
                     </li>
