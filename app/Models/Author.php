@@ -18,6 +18,10 @@ class Author extends Model
         'image',
     ];
 
+    protected $appends = [
+        'total_download',
+    ];
+
     /**
      * Get the admin who created the author
      */
@@ -32,5 +36,13 @@ class Author extends Model
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);
+    }
+
+    /**
+     * Total Books Download Count
+     */
+    public function getTotalDownloadAttribute()
+    {
+        return $this->books->sum('download_count');
     }
 }
