@@ -54,8 +54,36 @@
         @apply scale-100 rounded-lg;
     }
 
-    /* For Webkit-based browsers (Chrome, Safari and Opera) */
-    .scrollbar-hide-webkit::-webkit-scrollbar {
+    .carousel {
+        scrollbar-width: 0;
+    }
+
+    .carousel.dragging {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+    }
+
+    .carousel.dragging .card {
+        cursor: grab;
+        user-select: none;
+    }
+
+    .carousel-2 {
+        scrollbar-width: 0;
+    }
+
+    .carousel-2.dragging-2 {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+    }
+
+    .carousel-2.dragging-2 .card-2 {
+        cursor: grab;
+        user-select: none;
+    }
+
+     /* For Webkit-based browsers (Chrome, Safari and Opera) */
+     .scrollbar-hide-webkit::-webkit-scrollbar {
         display: none;
     }
 

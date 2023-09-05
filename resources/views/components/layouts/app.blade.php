@@ -42,7 +42,7 @@
 </head>
 
 <body class="font-lato h-screen bg-violet-300">
-    <header class="bg-violet-500 shadow-md p-y-1 text-white">
+    <header class="bg-violet-800 shadow-md p-y-1 text-white">
         <nav class="flex gap-4 justify-around md:justify-normal items-center w-[92%] mx-auto p-1">
             <a href="{{ route('home') }}">
                 <div class="flex items-center gap-2">
@@ -54,7 +54,7 @@
             </a>
 
             <div
-                class="nav-links bg-violet-500 md:static absolute ease-in-out transition-all duration-500 md:min-h-fit left-0 top-[-100%] w-full md:w-auto flex items-center px-5 py-2">
+                class="nav-links bg-violet-800 md:static z-30 absolute ease-in-out transition-all duration-500 md:min-h-fit left-0 top-[-100%] w-full md:w-auto flex items-center px-5 py-2">
                 <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 text-lg">
 
                     <!-- Search Box -->
@@ -63,7 +63,7 @@
                     <!-- Search Book -->
                     <li>
                         <a href="{{ route('books.view') }}"
-                            class="hover:text-black {{ request()->routeIs('books*') ? 'text-black' : ''}}">
+                            class="text-white hover:text-violet-400 {{ request()->routeIs('books*') ? 'text-violet-400' : ''}}">
                             Search Books
                         </a>
                     </li>
