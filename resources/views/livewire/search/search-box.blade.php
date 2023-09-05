@@ -12,10 +12,10 @@
     </div>
     @if ($search)
     @if ($tags && $tags->count() || $books && $books->count())
-    <div class="md:absolute ml-6 rounded-lg w-auto bg-white text-black shadow py-2 px-1 text-sm max-w-[20rem]">
+    <div class="md:absolute z-30 ml-6 rounded-lg w-auto bg-white text-black shadow py-2 px-1 text-sm max-w-[20rem]">
         @if ($tags && $tags->count())
         <h2 class="text-violet-700 mb-2">Tags</h2>
-        <div class="flex flex-wrap gap-1">
+        <div class="flex flex-wrap gap-2">
             @foreach ($tags as $tag)
             <a href="{{ route('books.view-pre', ['tagId' => $tag->id, 'authorId' => 'default-author']) }}">
                 <span class="p-1 bg-violet-700 hover:bg-violet-800 text-white shadow rounded-lg">{{ $tag->name }}</span>
@@ -44,7 +44,7 @@
         @endif
     </div>
     @else
-    <div class="md:absolute ml-6 rounded-lg w-auto bg-white text-black shadow py-2 px-1 text-sm max-w-[20rem]">
+    <div class="md:absolute ml-6 z-30 rounded-lg w-auto bg-white text-black shadow py-2 px-1 text-sm max-w-[20rem]">
         No matching information found!
     </div>
     @endif
