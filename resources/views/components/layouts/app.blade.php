@@ -157,7 +157,7 @@
     </main>
 
     <!-- popup -->
-    <div class="bg-slate-100 duration-200 ease-in-out rounded-xl fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] shadow-md w-full md:w-auto z-30 py-6 px-4 scale-0 border-t-8"
+    <div class="bg-slate-100 duration-200 ease-in-out rounded-xl fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] shadow-md w-full md:w-auto z-40 py-6 px-4 scale-0 border-t-8"
         id="popup">
         <p class="text-lg font-semibold text-center" id="popup-text"></p>
         <div class="flex items-center gap-2 place-content-center mt-4">
@@ -168,12 +168,12 @@
             <button class="button-violet-rounded w-auto" onclick="acceptPopup()">
                 <i class="fa-solid fa-check"></i>
                 Accept
-            </button>
+            </button>`
         </div>
     </div>
 
     <!-- popup overlay -->
-    <div class="duration-200 ease-in-out opacity-0 fixed top-0 left-0 bottom-0 right-0 bg-black/[0.5] z-20 pointer-events-none"
+    <div class="duration-200 ease-in-out opacity-0 fixed top-0 left-0 bottom-0 right-0 bg-black/[0.5] z-30 pointer-events-none"
         id="popup-overlay" onclick="closePopup()">
     </div>
 
